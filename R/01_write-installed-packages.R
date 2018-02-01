@@ -1,5 +1,6 @@
 ## deja vu from yesterday!
 
+
 ## create a data frame of your installed packages
 
 ## keep the variables
@@ -16,3 +17,14 @@
 
 ## when this script works, stage & commit it and the csv file
 ## PUSH!
+
+installed_packages <- installed.packages()
+
+library(tidyverse)
+library(here)
+
+installed_packages %>%
+  as.tibble() %>%
+  select(Package,LibPath,Version,Priority,Built) %>%
+  write_csv(path = paste(here(),"data","installed-packages.csv",sep="/"))
+
